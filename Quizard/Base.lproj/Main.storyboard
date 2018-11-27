@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Sign Up">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <segue destination="88P-BB-B7n" kind="show" id="uhm-fT-8GK"/>
@@ -34,7 +34,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Log In">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <segue destination="cU1-eK-t7o" kind="show" id="bhy-LJ-8fe"/>
@@ -65,7 +65,7 @@
         <!--Log In View Controller-->
         <scene sceneID="v7F-7a-8pm">
             <objects>
-                <viewController id="cU1-eK-t7o" customClass="LogInViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cU1-eK-t7o" customClass="LogInViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bHB-XP-OB1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,7 +140,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="G8B-gG-Nkl">
             <objects>
-                <viewController id="88P-BB-B7n" customClass="SignUpViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="88P-BB-B7n" customClass="SignUpViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PyB-pt-e5N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,7 +233,7 @@
         <!--Choose View Controller-->
         <scene sceneID="RLa-dZ-YCV">
             <objects>
-                <viewController id="KWc-0B-vsp" customClass="ChooseViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KWc-0B-vsp" customClass="ChooseViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B2h-GL-dt4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,7 +286,7 @@
         <!--Topics View Controller-->
         <scene sceneID="qUb-Ez-ZgN">
             <objects>
-                <viewController id="P3R-55-5NY" customClass="TopicsViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P3R-55-5NY" customClass="TopicsViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="leL-NG-HBa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,6 +319,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="liu-8n-vVe" id="39F-vU-ShR"/>
+                        <segue destination="8Hc-MV-DU4" kind="show" id="xmr-om-QQf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfM-YF-yPx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,7 +329,7 @@
         <!--View Controller-->
         <scene sceneID="PRG-4o-U6p">
             <objects>
-                <viewController id="8Hc-MV-DU4" customClass="MCQViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Hc-MV-DU4" customClass="MCQViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="olg-bE-TgV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -352,7 +353,6 @@
         <!--Navigation Controller-->
         <scene sceneID="KHT-qD-AcC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LXv-oL-vcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jRx-R5-3Og" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YWW-AL-eRZ">
@@ -364,13 +364,14 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mXp-gL-4nQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LXv-oL-vcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-335" y="90"/>
         </scene>
         <!--Pattern View Controller-->
         <scene sceneID="41Y-QE-rer">
             <objects>
-                <viewController id="r5F-la-BQH" customClass="PatternViewController" customModule="FirebaseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="r5F-la-BQH" customClass="PatternViewController" customModule="Quizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BLr-IO-F0v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
