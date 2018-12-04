@@ -11,6 +11,7 @@ import UIKit
 class MCQViewController: UIViewController {
 
     var questionIndex: Int = 0
+    var chosenTopicQuestion: [MCQ]?
 
     @IBOutlet weak var labelQuestionIndex: UILabel!
     @IBOutlet weak var labelQuestionBody: UILabel!
@@ -23,6 +24,15 @@ class MCQViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let questions = chosenTopicQuestion {
+            // get value of enum by the raw value (Int)
+            let enumValue: Topics? = Topics(rawValue: questions[questionIndex].topic)
+            // cast the enum name value to String
+            if let enumStringValue = enumValue?.nameEnum {
+                self.title = "\(enumStringValue)"
+            }
+        }
+        readyView()
     }
 
     @IBAction func submitChoice(sender: AnyObject) {
@@ -32,13 +42,21 @@ class MCQViewController: UIViewController {
         }
         switch button.tag {
         case 1:
-            verifyAnswer(answer: 1)
+            verifyAnswer(answer: 0)
+            questionIndex = questionIndex + 1
+            readyView()
         case 2:
-            verifyAnswer(answer: 2)
+            verifyAnswer(answer: 1)
+            questionIndex = questionIndex + 1
+            readyView()
         case 3:
-            verifyAnswer(answer: 3)
+            verifyAnswer(answer: 2)
+            questionIndex = questionIndex + 1
+            readyView()
         case 4:
-            verifyAnswer(answer: 4)
+            verifyAnswer(answer: 3)
+            questionIndex = questionIndex + 1
+            readyView()
         default:
             print("unknown answer")
             return
@@ -47,12 +65,25 @@ class MCQViewController: UIViewController {
 
     func verifyAnswer(answer: Int) {
         // firebase call or logic check against the selectedQuestionIndex
+        if let questions = chosenTopicQuestion {
+            if answer == questions[questionIndex].answer {
+                // update score
+            }
+        }
         print(answer)
     }
 
     func readyView() {
-        // step 1: get data from the correct index
-        // step 2: update ui pieces accordingly
+        if questionIndex <= 9 {
+            if let questions = self.chosenTopicQuestion {
+                labelQuestionIndex.text = "Question \(questionIndex + 1)"
+                labelQuestionBody.text = questions[questionIndex].questionText
+                buttonOption1.setTitle("A: \(questions[questionIndex].choices[0])", for: UIControl.State.normal)
+                buttonOption2.setTitle("B: \(questions[questionIndex].choices[1])", for: UIControl.State.normal)
+                buttonOption3.setTitle("C: \(questions[questionIndex].choices[2])", for: UIControl.State.normal)
+                buttonOption4.setTitle("D: \(questions[questionIndex].choices[3])", for: UIControl.State.normal)
+            }
+        }
     }
 
     /*
