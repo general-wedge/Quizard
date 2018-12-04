@@ -120,7 +120,6 @@
                                 <connections>
                                     <action selector="logIn:" destination="cU1-eK-t7o" eventType="touchUpInside" id="q87-8U-dnX"/>
                                     <action selector="signUpWithSender:" destination="88P-BB-B7n" eventType="touchUpInside" id="4f0-3W-lib"/>
-                                    <segue destination="KWc-0B-vsp" kind="show" identifier="goToApp" id="Mon-2n-drt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,6 +130,7 @@
                         <outlet property="emailText" destination="0y9-UF-C9Z" id="eue-dG-sxS"/>
                         <outlet property="passwordText" destination="r3I-cK-SEc" id="tgR-tN-B9a"/>
                         <outlet property="signInButton" destination="3Pg-Dq-My7" id="Yao-ug-wfg"/>
+                        <segue destination="KWc-0B-vsp" kind="show" identifier="goToApp" id="GWk-7m-BTf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFO-Ff-byH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,7 +319,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="liu-8n-vVe" id="39F-vU-ShR"/>
-                        <segue destination="8Hc-MV-DU4" kind="show" id="xmr-om-QQf"/>
+                        <segue destination="8Hc-MV-DU4" kind="show" identifier="topicSegue" id="x0s-JI-VcQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfM-YF-yPx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -348,7 +348,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-72-lrz">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-72-lrz">
                                 <rect key="frame" x="39" y="455" width="297" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -359,7 +359,7 @@
                                     <action selector="submitChoiceWithSender:" destination="8Hc-MV-DU4" eventType="touchDown" id="nRp-SP-3eM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kg-RZ-V14">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kg-RZ-V14">
                                 <rect key="frame" x="39" y="555" width="297" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -370,7 +370,7 @@
                                     <action selector="submitChoiceWithSender:" destination="8Hc-MV-DU4" eventType="touchDown" id="ba1-Qn-yWV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psb-dy-nNx">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psb-dy-nNx">
                                 <rect key="frame" x="39" y="605" width="297" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -381,7 +381,7 @@
                                     <action selector="submitChoiceWithSender:" destination="8Hc-MV-DU4" eventType="touchDown" id="LKS-yr-act"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfR-oK-pgX">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfR-oK-pgX">
                                 <rect key="frame" x="39" y="505" width="297" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
