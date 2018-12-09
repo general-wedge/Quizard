@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		6BB2589721AC62D900CF01DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BB2589321AC62D800CF01DE /* Main.storyboard */; };
 		6BB2589821AC62D900CF01DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BB2589521AC62D800CF01DE /* LaunchScreen.storyboard */; };
+		AE693CA921B6E3FE00CC6CD5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CA621B6E3FD00CC6CD5 /* User.swift */; };
+		AE693CAA21B6E3FE00CC6CD5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CA721B6E3FE00CC6CD5 /* Question.swift */; };
+		AE693CAB21B6E3FE00CC6CD5 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CA821B6E3FE00CC6CD5 /* Score.swift */; };
+		AE693CAD21B8594700CC6CD5 /* QuizScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CAC21B8594700CC6CD5 /* QuizScoreViewController.swift */; };
+		AE693CAF21B9B1A200CC6CD5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CAE21B9B1A200CC6CD5 /* ProfileViewController.swift */; };
+		AE693CB121B9B1B700CC6CD5 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CB021B9B1B700CC6CD5 /* HighScoreViewController.swift */; };
 		AE978402219A45BB00EB2CF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978401219A45BB00EB2CF8 /* AppDelegate.swift */; };
 		AE978409219A45BC00EB2CF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE978408219A45BC00EB2CF8 /* Assets.xcassets */; };
 		AE978439219A4A4D00EB2CF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978438219A4A4D00EB2CF8 /* ViewController.swift */; };
 		AE978441219A4F7300EB2CF8 /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978436219A4A1500EB2CF8 /* TopicsViewController.swift */; };
-		AE978442219A4F7900EB2CF8 /* PatternViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978431219A4A1500EB2CF8 /* PatternViewController.swift */; };
 		AE978443219A4F7C00EB2CF8 /* MCQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978434219A4A1500EB2CF8 /* MCQViewController.swift */; };
 		AE978445219A4F8100EB2CF8 /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978435219A4A1500EB2CF8 /* ChooseViewController.swift */; };
 		AE978448219A51C500EB2CF8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978447219A51C500EB2CF8 /* SignUpViewController.swift */; };
@@ -21,6 +26,9 @@
 		AEA43BB321AB5BE30091DBE0 /* Pods-Quizard.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D326A5A3BCAF24CE55C74471 /* Pods-Quizard.debug.xcconfig */; };
 		AEA43BB421AB5BE60091DBE0 /* Pods-Quizard.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4B60C152CEC0E2BC9D08EDE7 /* Pods-Quizard.release.xcconfig */; };
 		AEA43BCC21AC55B00091DBE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEA43BCB21AC55B00091DBE0 /* GoogleService-Info.plist */; };
+		AEA9DF7721BC6223003D5A46 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA9DF7621BC6223003D5A46 /* System.swift */; };
+		AEA9DF7C21BC6441003D5A46 /* navimage.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA9DF7B21BC6441003D5A46 /* navimage.png */; };
+		AEA9DF8021BCBF3F003D5A46 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA9DF7F21BCBF3F003D5A46 /* ViewHelper.swift */; };
 		B9FA2C5443243B515E3BD2C1 /* Pods_Quizard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF402C35CB9F2DE3B49C7454 /* Pods_Quizard.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,11 +36,16 @@
 		4B60C152CEC0E2BC9D08EDE7 /* Pods-Quizard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizard.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quizard/Pods-Quizard.release.xcconfig"; sourceTree = "<group>"; };
 		6BB2589421AC62D800CF01DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		6BB2589621AC62D800CF01DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE693CA621B6E3FD00CC6CD5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AE693CA721B6E3FE00CC6CD5 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		AE693CA821B6E3FE00CC6CD5 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		AE693CAC21B8594700CC6CD5 /* QuizScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizScoreViewController.swift; sourceTree = "<group>"; };
+		AE693CAE21B9B1A200CC6CD5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AE693CB021B9B1B700CC6CD5 /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		AE9783FE219A45BB00EB2CF8 /* Quizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE978401219A45BB00EB2CF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE978408219A45BC00EB2CF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE97840D219A45BC00EB2CF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE978431219A4A1500EB2CF8 /* PatternViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternViewController.swift; sourceTree = "<group>"; };
 		AE978434219A4A1500EB2CF8 /* MCQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCQViewController.swift; sourceTree = "<group>"; };
 		AE978435219A4A1500EB2CF8 /* ChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
 		AE978436219A4A1500EB2CF8 /* TopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +53,9 @@
 		AE978447219A51C500EB2CF8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AE978449219A523800EB2CF8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AEA43BCB21AC55B00091DBE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AEA9DF7621BC6223003D5A46 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		AEA9DF7B21BC6441003D5A46 /* navimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navimage.png; sourceTree = "<group>"; };
+		AEA9DF7F21BCBF3F003D5A46 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		D326A5A3BCAF24CE55C74471 /* Pods-Quizard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quizard/Pods-Quizard.debug.xcconfig"; sourceTree = "<group>"; };
 		DF402C35CB9F2DE3B49C7454 /* Pods_Quizard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quizard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,6 +111,7 @@
 		AE978400219A45BB00EB2CF8 /* Quizard */ = {
 			isa = PBXGroup;
 			children = (
+				AEA9DF7821BC6370003D5A46 /* Resources */,
 				AE978437219A4A1C00EB2CF8 /* Classes */,
 				AE978430219A4A0600EB2CF8 /* Controllers */,
 				AE97842F219A49ED00EB2CF8 /* StoryBoards */,
@@ -119,11 +136,13 @@
 			children = (
 				AE978435219A4A1500EB2CF8 /* ChooseViewController.swift */,
 				AE978434219A4A1500EB2CF8 /* MCQViewController.swift */,
-				AE978431219A4A1500EB2CF8 /* PatternViewController.swift */,
 				AE978436219A4A1500EB2CF8 /* TopicsViewController.swift */,
 				AE978438219A4A4D00EB2CF8 /* ViewController.swift */,
 				AE978447219A51C500EB2CF8 /* SignUpViewController.swift */,
 				AE978449219A523800EB2CF8 /* LoginViewController.swift */,
+				AE693CAC21B8594700CC6CD5 /* QuizScoreViewController.swift */,
+				AE693CAE21B9B1A200CC6CD5 /* ProfileViewController.swift */,
+				AE693CB021B9B1B700CC6CD5 /* HighScoreViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -131,9 +150,22 @@
 		AE978437219A4A1C00EB2CF8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AE693CA721B6E3FE00CC6CD5 /* Question.swift */,
+				AE693CA821B6E3FE00CC6CD5 /* Score.swift */,
+				AE693CA621B6E3FD00CC6CD5 /* User.swift */,
 				AE978401219A45BB00EB2CF8 /* AppDelegate.swift */,
+				AEA9DF7621BC6223003D5A46 /* System.swift */,
+				AEA9DF7F21BCBF3F003D5A46 /* ViewHelper.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		AEA9DF7821BC6370003D5A46 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AEA9DF7B21BC6441003D5A46 /* navimage.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +231,7 @@
 				AEA43BB421AB5BE60091DBE0 /* Pods-Quizard.release.xcconfig in Resources */,
 				6BB2589721AC62D900CF01DE /* Main.storyboard in Resources */,
 				AEA43BB321AB5BE30091DBE0 /* Pods-Quizard.debug.xcconfig in Resources */,
+				AEA9DF7C21BC6441003D5A46 /* navimage.png in Resources */,
 				6BB2589821AC62D900CF01DE /* LaunchScreen.storyboard in Resources */,
 				AE978409219A45BC00EB2CF8 /* Assets.xcassets in Resources */,
 				AEA43BCC21AC55B00091DBE0 /* GoogleService-Info.plist in Resources */,
@@ -265,13 +298,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE693CAD21B8594700CC6CD5 /* QuizScoreViewController.swift in Sources */,
+				AE693CB121B9B1B700CC6CD5 /* HighScoreViewController.swift in Sources */,
 				AE978443219A4F7C00EB2CF8 /* MCQViewController.swift in Sources */,
-				AE978442219A4F7900EB2CF8 /* PatternViewController.swift in Sources */,
 				AE978448219A51C500EB2CF8 /* SignUpViewController.swift in Sources */,
 				AE978402219A45BB00EB2CF8 /* AppDelegate.swift in Sources */,
+				AEA9DF8021BCBF3F003D5A46 /* ViewHelper.swift in Sources */,
 				AE97844A219A523800EB2CF8 /* LoginViewController.swift in Sources */,
+				AE693CAA21B6E3FE00CC6CD5 /* Question.swift in Sources */,
+				AE693CA921B6E3FE00CC6CD5 /* User.swift in Sources */,
 				AE978445219A4F8100EB2CF8 /* ChooseViewController.swift in Sources */,
+				AEA9DF7721BC6223003D5A46 /* System.swift in Sources */,
 				AE978441219A4F7300EB2CF8 /* TopicsViewController.swift in Sources */,
+				AE693CAF21B9B1A200CC6CD5 /* ProfileViewController.swift in Sources */,
+				AE693CAB21B6E3FE00CC6CD5 /* Score.swift in Sources */,
 				AE978439219A4A4D00EB2CF8 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
