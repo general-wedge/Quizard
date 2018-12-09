@@ -9,9 +9,32 @@
 import Foundation
 
 
-struct Score {
-    var userId: Int = 0
-    var score: Int = 0
+class Score {
+    var userId: String
+    var score: Int
+    
+    init(initialScore: Int, usersId: String) {
+        score = initialScore
+        userId = usersId
+    }
+    
+    func updateScore() {
+        score += 100
+    }
+    
+    func updatePerfectScore() {
+        score += 1000
+    }
+    
+    func updateTimeScore(time: Int) {
+        let timeScore = score / time
+        
+        if timeScore < 0 {
+            score += 0
+        } else {
+            score += timeScore
+        }
+    }
 }
 
 // Not sure if we need the join table structs...
@@ -23,7 +46,7 @@ struct Score {
 //}
 
 struct HighScore {
-    var userId: Int = 0
-    var questionId: Int = 0
-    var scoreId: Int = 0
+    var userId: String
+    var topic: Int
+    var highScore: Int
 }

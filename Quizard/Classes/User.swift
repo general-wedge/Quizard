@@ -12,6 +12,13 @@ import Foundation
 struct User {
     var id: Int = 0
     var userName: String = ""
-    var password: String = ""
     var email: String = ""
+    
+    // default constructor
+    init() { }
+    
+    init(name: String, userEmail: String) {
+        userName = name
+        email = userEmail
+    }
 }
