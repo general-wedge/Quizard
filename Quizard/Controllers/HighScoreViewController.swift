@@ -12,7 +12,7 @@ class HighScoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "High Scores"
         // Do any additional setup after loading the view.
     }
     

@@ -12,8 +12,18 @@ import Firebase
 class TopicsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var mcqs: [MCQ] = []
+    var topic: Int = 0
     var ref: DatabaseReference?
     
+    let gradient = CAGradientLayer()
+    var gradientSet = [[CGColor]]()
+    var currentGradient: Int = 0
+    
+    let gradientOne = UIColor(red: 48/255, green: 62/255, blue: 103/255, alpha: 1).cgColor
+    let gradientTwo = UIColor(red: 244/255, green: 88/255, blue: 53/255, alpha: 1).cgColor
+    let gradientThree = UIColor(red: 196/255, green: 70/255, blue: 107/255, alpha: 1).cgColor
+    
+    @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -23,7 +33,23 @@ class TopicsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.title = "Topics"
         tableView.delegate = self
         tableView.dataSource = self
-        //initQuestions()
+        
+        if let navController = navigationController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
+        
+        // get logged in users info and apply username to label
+        getCurrentUserName() { (userName) in
+            self.userLabel.text = "@" + userName
+        }
+        
+        startBackgroundAnimation()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        startBackgroundAnimation()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,14 +61,22 @@ class TopicsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
-        
+        tableView.backgroundColor = .clear
         // get value of enum by the raw value (Int)
         let enumValue: Topics? = Topics(rawValue: indexPath.row)
         // cast the enum name value to String
-        let enumStringValue = enumValue?.nameEnum
-        cell.textLabel?.text = enumStringValue
+        if let enumStringValue = enumValue?.nameEnum {
+            ViewHelper.applyCellLabelStyles(label: cell.textLabel, text: enumStringValue)
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let minHeight: CGFloat = 100.0
+        let tHeight = tableView.bounds.height
+        let temp = tHeight/CGFloat(Topics.allCases.count)
+        return temp > minHeight ? temp : minHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -54,11 +88,13 @@ class TopicsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     guard let dict = child.value as? [String: Any] else { continue }
                     let mcq = MCQ.init(jsonDict: dict)
                     self.mcqs.append(mcq)
+                    self.topic = indexPath.row
                 }
                 self.performSegue(withIdentifier: "topicSegue", sender: self)
             }
         }
-       
+        // animate the click
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
@@ -68,33 +104,63 @@ class TopicsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         {
             if let vc = segue.destination as? MCQViewController {
                 // pass chosen mcqs to mcq view controller
+                vc.topic = self.topic
                 vc.chosenTopicQuestion = self.mcqs
             }
         }
     }
     
-    func initQuestions() {
-        ref = Database.database().reference()
-        if let dbRef = ref {
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 1, "topic": 0, "questionText": "Canada was founded in which year?", "choices": ["1776", "1867", "1432", "1676"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 3, "topic": 0, "questionText": "In what year did Christopher Columbus so famously sail the ocean blue?", "choices": ["1352", "1682", "1542", "1492"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 2, "topic": 0, "questionText": "The first known civilization, located in mordern-day Iraq, is called?", "choices": ["Sumer", "Babylonia", "Mesopotamia", "Aramaic"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 0, "topic": 0, "questionText": "The first human life to set foot in North America is most likely from?", "choices": ["Asia", "Africa", "Europe", "Australia"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 1, "topic": 0, "questionText": "The White House was burned down in which year?", "choices": ["1945", "1814", "1780", "1880"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 2, "topic": 0, "questionText": "Napoleon Bonaparte was exiled to which island in 1814?", "choices": ["Maldives", "Klingking", "Elba", "Cape Breton"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 0, "topic": 0, "questionText": "Ancient Egypt is described being which time period?", "choices": ["3100 BC to 525 BC", "4500 BC to 1000 BC", "2750 BC to 750 BC", "5000 BC to 2000 BC"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 1, "topic": 0, "questionText": "Which famous Roman emperor was overthrown by germanic barbarians in 476 CE?", "choices": ["Nero", "Romulus", "Remus", "Caesar"]])
-            
-            dbRef.child("questions").childByAutoId().setValue(["answer": 2, "topic": 0, "questionText": "Which Roman emperor was the first to be assassinated?", "choices": ["Caesar", "Nero", "Caligula", "Tiberius"]])
+    func getCurrentUserName(completion: @escaping (String) -> Void) {
+        ref = Database.database().reference(withPath: "users")
+        var userName: String = ""
+        if let userRef = ref {
+            userRef.child(getCurrentUserId()).observeSingleEvent(of: .value, with: { (snapshot) in
+                let dict = snapshot.value as? NSDictionary ?? [:]
+                userName = dict.value(forKey: "userName") as? String ?? ""
+                completion(userName)
+            })
         }
+    }
+    
+    func getCurrentUserId() -> String {
+        let currentUser = Auth.auth().currentUser
+        if let user = currentUser {
+            return user.uid
+        }
+        
+        return ""
+    }
+    
+    func startBackgroundAnimation() {
+        // set up gradient animation
+        gradientSet.append([gradientOne, gradientTwo])
+        gradientSet.append([gradientTwo, gradientThree])
+        gradientSet.append([gradientThree, gradientOne])
+        
+        gradient.frame = self.view.bounds
+        gradient.colors = gradientSet[currentGradient]
+        gradient.startPoint = CGPoint(x:0, y:0)
+        gradient.endPoint = CGPoint(x:1, y:1)
+        gradient.drawsAsynchronously = true
+        self.view.layer.insertSublayer(gradient, at: 0)
+        
+        animateGradient()
+    }
+    
+    func animateGradient() {
+        if currentGradient < gradientSet.count - 1 {
+            currentGradient += 1
+        } else {
+            currentGradient = 0
+        }
+        
+        let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
+        gradientChangeAnimation.duration = 5.0
+        gradientChangeAnimation.toValue = gradientSet[currentGradient]
+        gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
+        gradientChangeAnimation.isRemovedOnCompletion = false
+        gradientChangeAnimation.delegate = self
+        gradient.add(gradientChangeAnimation, forKey: "colorChange")
     }
     
 
@@ -108,4 +174,13 @@ class TopicsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
+}
+
+extension TopicsViewController: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
+            gradient.colors = gradientSet[currentGradient]
+            animateGradient()
+        }
+    }
 }

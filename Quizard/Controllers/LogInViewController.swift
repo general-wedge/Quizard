@@ -15,64 +15,93 @@ class LogInViewController: UIViewController {
     @IBOutlet var passwordText : UITextField!
     @IBOutlet var signInButton : UIButton!
     
-    @IBAction func logIn(_ sender: UIButton) {
-        Auth.auth().signIn(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
-            if error != nil {
-                print("Error occurred: \(error.debugDescription )");
-            }
-            
-            if user != nil {
-                print("User logged in")
-                //self.clearText()
-                self.performSegue(withIdentifier: "goToApp", sender: self)
-            } else {
-                print("User failed to login")
-            }
-        }
-    }
+    let gradient = CAGradientLayer()
+    var gradientSet = [[CGColor]]()
+    var currentGradient: Int = 0
+    
+    let gradientOne = UIColor(red: 48/255, green: 62/255, blue: 103/255, alpha: 1).cgColor
+    let gradientTwo = UIColor(red: 244/255, green: 88/255, blue: 53/255, alpha: 1).cgColor
+    let gradientThree = UIColor(red: 196/255, green: 70/255, blue: 107/255, alpha: 1).cgColor
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor(red: 125/255.5, green: 175/255.5, blue: 255/255.5, alpha: 1.0).cgColor, UIColor(red: 128/255.5, green: 25/255.5, blue: 14/255.5, alpha: 1.0).cgColor,
-                                UIColor(red: 128/255.5, green: 25/255.5, blue: 14/255.5, alpha: 1.0).cgColor]
-        gradientLayer.locations = [0.0, 0.8, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        if let navController = navigationController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
         
-        signInButton.backgroundColor = .clear
-        signInButton.layer.cornerRadius = signInButton.frame.height / 2
-        signInButton.layer.borderWidth = 1
-        signInButton.layer.borderColor = UIColor.white.cgColor
+        startBackgroundAnimation()
+        readyView()
         
-        let width = CGFloat(2.0)
-        let emailBorder = CALayer()
-        emailBorder.borderColor = UIColor.white.cgColor
-        emailBorder.frame = CGRect(x: 0, y: emailText.frame.size.height - width, width:  emailText.frame.size.width, height: emailText.frame.size.height)
-        
-        emailBorder.borderWidth = width
-        emailText.borderStyle = UITextField.BorderStyle.none
-        emailText.layer.addSublayer(emailBorder)
-        emailText.layer.masksToBounds = true
-        
-        
-        let passwordBorder = CALayer()
-        passwordBorder.borderColor = UIColor.white.cgColor
-        passwordBorder.frame = CGRect(x: 0, y: passwordText.frame.size.height - width, width:  passwordText.frame.size.width, height: passwordText.frame.size.height)
-        
-        passwordBorder.borderWidth = width
-        passwordText.borderStyle = UITextField.BorderStyle.none
-        passwordText.layer.addSublayer(passwordBorder)
-        passwordText.layer.masksToBounds = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func logIn(_ sender: UIButton) {
+        Auth.auth().signIn(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
+            if error != nil {
+                print("Error occurred: \(error.debugDescription )");
+                self.clearText()
+            }
+            
+            if user != nil {
+                print("User logged in")
+                self.performSegue(withIdentifier: "goToApp", sender: self)
+            } else {
+                print("User failed to login")
+            }
+        }
+    }
+    
+    func clearText() {
+        emailText.text = ""
+        passwordText.text = ""
+    }
+    
+    func startBackgroundAnimation() {
+        // set up gradient animation
+        gradientSet.append([gradientOne, gradientTwo])
+        gradientSet.append([gradientTwo, gradientThree])
+        gradientSet.append([gradientThree, gradientOne])
+        
+        gradient.frame = self.view.bounds
+        gradient.colors = gradientSet[currentGradient]
+        gradient.startPoint = CGPoint(x:0, y:0)
+        gradient.endPoint = CGPoint(x:1, y:1)
+        gradient.drawsAsynchronously = true
+        self.view.layer.insertSublayer(gradient, at: 0)
+        
+        animateGradient()
+    }
+    
+    func animateGradient() {
+        if currentGradient < gradientSet.count - 1 {
+            currentGradient += 1
+        } else {
+            currentGradient = 0
+        }
+        
+        let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
+        gradientChangeAnimation.duration = 5.0
+        gradientChangeAnimation.toValue = gradientSet[currentGradient]
+        gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
+        gradientChangeAnimation.isRemovedOnCompletion = false
+        gradientChangeAnimation.delegate = self
+        gradient.add(gradientChangeAnimation, forKey: "colorChange")
+    }
+    
+    func readyView() {
+        ViewHelper.applyButtonStyles(button: signInButton)
+        ViewHelper.applyInputStyles(input: emailText)
+        ViewHelper.applyInputStyles(input: passwordText)
+    }
+    
+    
     
     
     /*
@@ -85,4 +114,13 @@ class LogInViewController: UIViewController {
      }
      */
     
+}
+
+extension LogInViewController: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
+            gradient.colors = gradientSet[currentGradient]
+            animateGradient()
+        }
+    }
 }

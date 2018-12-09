@@ -12,39 +12,52 @@ import Firebase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
+    var ref: DatabaseReference?
+    
     @IBOutlet var continueButton : UIButton!
     @IBOutlet var userNameText : UITextField!
     @IBOutlet var emailText : UITextField!
     @IBOutlet var passwordText : UITextField!
     
-    @IBAction func signUp(sender: UIButton) {
-        Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
-            if error != nil {
-                print("Error occurred: \(error.debugDescription )");
-            }
-            
-            if user != nil {
-                print("User has been created")
-                self.clearText()
-                self.performSegue(withIdentifier: "goToLogin", sender: self)
-            }
-        }
-    }
+    let gradient = CAGradientLayer()
+    var gradientSet = [[CGColor]]()
+    var currentGradient: Int = 0
+    
+    let gradientOne = UIColor(red: 48/255, green: 62/255, blue: 103/255, alpha: 1).cgColor
+    let gradientTwo = UIColor(red: 244/255, green: 88/255, blue: 53/255, alpha: 1).cgColor
+    let gradientThree = UIColor(red: 196/255, green: 70/255, blue: 107/255, alpha: 1).cgColor
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        if let navController = navigationController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor(red: 125/255.5, green: 175/255.5, blue: 255/255.5, alpha: 1.0).cgColor, UIColor(red: 128/255.5, green: 25/255.5, blue: 14/255.5, alpha: 1.0).cgColor,
-                                UIColor(red: 128/255.5, green: 25/255.5, blue: 14/255.5, alpha: 1.0).cgColor]
-        gradientLayer.locations = [0.0, 0.8, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        
+        // set up gradient animation
+        gradientSet.append([gradientOne, gradientTwo])
+        gradientSet.append([gradientTwo, gradientThree])
+        gradientSet.append([gradientThree, gradientOne])
         
         
+        gradient.frame = self.view.bounds
+        gradient.colors = gradientSet[currentGradient]
+        gradient.startPoint = CGPoint(x:0, y:0)
+        gradient.endPoint = CGPoint(x:1, y:1)
+        gradient.drawsAsynchronously = true
+        self.view.layer.insertSublayer(gradient, at: 0)
+        
+        animateGradient()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // set up controls
         continueButton.layer.cornerRadius = continueButton.frame.height / 2
         continueButton.layer.borderWidth = 1
         continueButton.layer.borderColor = UIColor.white.cgColor
@@ -80,6 +93,42 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func signUp(sender: UIButton) {
+        ref = Database.database().reference()
+        Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
+            if error != nil {
+                print("Error occurred: \(error.debugDescription )");
+                self.clearText()
+            }
+            
+            if user != nil {
+                print("User has been created")
+                if let dbRef = self.ref {
+                    if let signedInUser = user {
+                        dbRef.child("users").child(signedInUser.user.uid).setValue(["userName": self.userNameText.text, "email": signedInUser.user.email])
+                    }
+                }
+                self.performSegue(withIdentifier: "goToLogin", sender: self)
+            }
+        }
+    }
+    
+    func animateGradient() {
+        if currentGradient < gradientSet.count - 1 {
+            currentGradient += 1
+        } else {
+            currentGradient = 0
+        }
+        
+        let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
+        gradientChangeAnimation.duration = 5.0
+        gradientChangeAnimation.toValue = gradientSet[currentGradient]
+        gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
+        gradientChangeAnimation.isRemovedOnCompletion = false
+        gradientChangeAnimation.delegate = self
+        gradient.add(gradientChangeAnimation, forKey: "colorChange")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,4 +150,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
      }
      */
     
+}
+
+extension SignUpViewController: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
+            gradient.colors = gradientSet[currentGradient]
+            animateGradient()
+        }
+    }
 }
