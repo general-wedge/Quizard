@@ -52,19 +52,23 @@ class MCQViewController: UIViewController {
         }
         
         timerLabel.text = String(counter)
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
-            
-            // this allows us to use the ViewControllers self
-            // rather than the completion handlers self
-            guard let strongSelf = self else {
-                return
-            }
-            
-            strongSelf.counter += 0.01
-            ViewHelper.applyLabelStyles(label: strongSelf.timerLabel, text: String(format: "%0.2f", strongSelf.counter))
-        }
+//        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
+//
+//            // this allows us to use the ViewControllers self
+//            // rather than the completion handlers self
+//            guard let strongSelf = self else {
+//                return
+//            }
+//
+//            strongSelf.counter += 0.01
+//            ViewHelper.applyLabelStyles(label: strongSelf.timerLabel, text: String(format: "%0.2f", strongSelf.counter))
+//        }
         startBackgroundAnimation()
         readyView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        showAlert(message: "1. 100 points per question right. \n 2. 1000 points for a perfect score. \n 3. Score is also based off time it takes.", title: "How It Works")
     }
 
     @IBAction func submitChoice(sender: AnyObject) {
@@ -228,6 +232,37 @@ class MCQViewController: UIViewController {
         gradientChangeAnimation.isRemovedOnCompletion = false
         gradientChangeAnimation.delegate = self
         gradient.add(gradientChangeAnimation, forKey: "colorChange")
+    }
+    
+    func createAlertController(message: String, title: String) -> UIAlertController {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
+        // add cancel button so user can close alert\
+        let timerAction = UIAlertAction(title: "Start", style: UIAlertAction.Style.default, handler: startTimer)
+        alertController.addAction(timerAction)
+        return alertController
+    }
+    
+    // this function displays an alert
+    func showAlert(message: String, title: String) {
+        let alert = createAlertController(message: message, title: title)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func startTimer(alert: UIAlertAction) {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
+            
+            // this allows us to use the ViewControllers self
+            // rather than the completion handlers self
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.counter += 0.01
+            ViewHelper.applyLabelStyles(label: strongSelf.timerLabel, text: String(format: "%0.2f", strongSelf.counter))
+        }
     }
 
     /*
