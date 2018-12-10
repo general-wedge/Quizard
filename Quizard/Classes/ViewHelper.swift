@@ -39,6 +39,7 @@ class ViewHelper {
     static func applyCellLabelStyles(label: UILabel?, text: String) {
         if let cellLabel = label {
             cellLabel.text = text
+            cellLabel.sizeToFit()
             cellLabel.textColor = UIColor.white
             cellLabel.font = UIFont(name: "Optima-Bold", size: 20)
             cellLabel.textAlignment = .center

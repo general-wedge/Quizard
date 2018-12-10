@@ -53,21 +53,3 @@ struct MCQ : Question {
         choices = jsonDict["choices"] as! [String]
     }
 }
-
-struct Pattern : Question {
-    var answer: Int
-    var topic: Int
-    // image path
-    var questionImage: String = ""
-    var choices: [Int] = []
-    // GARRET **** See below
-    // not sure what format the pattern question choices are...
-    // I'm assuming they are strings of the image path
-    var choicesImages: [String] = []
-}
-
-struct Question_Score {
-    var id: Int = 0
-    var questionId: Int = 0
-    var scoreId: Int = 0
-}

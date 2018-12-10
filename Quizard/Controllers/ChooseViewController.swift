@@ -44,6 +44,10 @@ class ChooseViewController: UIViewController, UITableViewDelegate, UITableViewDa
         startBackgroundAnimation()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        startBackgroundAnimation()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -55,8 +59,6 @@ class ChooseViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ViewHelper.applyCellLabelStyles(label: cell.textLabel, text: "Question Topics")
         } else if indexPath.row == 1 {
             ViewHelper.applyCellLabelStyles(label: cell.textLabel, text: "High Scores")
-        } else if indexPath.row == 2 {
-            ViewHelper.applyCellLabelStyles(label: cell.textLabel, text: "Profile")
         }
         
         return cell
@@ -67,8 +69,6 @@ class ChooseViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.performSegue(withIdentifier: "goToTopics", sender: self)
         } else if indexPath.row == 1 {
             self.performSegue(withIdentifier: "goToHighScores", sender: self)
-        } else if indexPath.row == 2 {
-            self.performSegue(withIdentifier: "goToProfile", sender: self)
         }
         // animate the click
         tableView.deselectRow(at: indexPath, animated: true)
@@ -77,7 +77,7 @@ class ChooseViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let minHeight: CGFloat = 100.0
         let tHeight = tableView.bounds.height
-        let temp = tHeight/CGFloat(4)
+        let temp = tHeight/CGFloat(2)
         return temp > minHeight ? temp : minHeight
     }
     
@@ -96,8 +96,6 @@ class ChooseViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func getCurrentUserId() -> String {
         let currentUser = Auth.auth().currentUser
         if let user = currentUser {
-            // TODO: handle error properly OR update to handle method in firebase
-            // TODO: moved it from guard let (try re working it later)
             return user.uid
         }
         

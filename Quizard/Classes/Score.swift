@@ -37,16 +37,12 @@ class Score {
     }
 }
 
-// Not sure if we need the join table structs...
-// Have to see how Firebase handles relationships
-//struct Score_User {
-//    var id: Int = 0
-//    var userId: Int = 0
-//    var scoreId: Int = 0
-//}
-
 struct HighScore {
-    var userId: String
     var topic: Int
     var highScore: Int
+    
+    init(highScoreTopic: Int, usersHighScore: Int) {
+        topic = highScoreTopic
+        highScore = usersHighScore
+    }
 }
