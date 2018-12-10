@@ -13,7 +13,6 @@
 		AE693CAA21B6E3FE00CC6CD5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CA721B6E3FE00CC6CD5 /* Question.swift */; };
 		AE693CAB21B6E3FE00CC6CD5 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CA821B6E3FE00CC6CD5 /* Score.swift */; };
 		AE693CAD21B8594700CC6CD5 /* QuizScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CAC21B8594700CC6CD5 /* QuizScoreViewController.swift */; };
-		AE693CAF21B9B1A200CC6CD5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CAE21B9B1A200CC6CD5 /* ProfileViewController.swift */; };
 		AE693CB121B9B1B700CC6CD5 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE693CB021B9B1B700CC6CD5 /* HighScoreViewController.swift */; };
 		AE978402219A45BB00EB2CF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE978401219A45BB00EB2CF8 /* AppDelegate.swift */; };
 		AE978409219A45BC00EB2CF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE978408219A45BC00EB2CF8 /* Assets.xcassets */; };
@@ -40,7 +39,6 @@
 		AE693CA721B6E3FE00CC6CD5 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		AE693CA821B6E3FE00CC6CD5 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		AE693CAC21B8594700CC6CD5 /* QuizScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizScoreViewController.swift; sourceTree = "<group>"; };
-		AE693CAE21B9B1A200CC6CD5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE693CB021B9B1B700CC6CD5 /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		AE9783FE219A45BB00EB2CF8 /* Quizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE978401219A45BB00EB2CF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				AE978447219A51C500EB2CF8 /* SignUpViewController.swift */,
 				AE978449219A523800EB2CF8 /* LoginViewController.swift */,
 				AE693CAC21B8594700CC6CD5 /* QuizScoreViewController.swift */,
-				AE693CAE21B9B1A200CC6CD5 /* ProfileViewController.swift */,
 				AE693CB021B9B1B700CC6CD5 /* HighScoreViewController.swift */,
 			);
 			path = Controllers;
@@ -310,7 +307,6 @@
 				AE978445219A4F8100EB2CF8 /* ChooseViewController.swift in Sources */,
 				AEA9DF7721BC6223003D5A46 /* System.swift in Sources */,
 				AE978441219A4F7300EB2CF8 /* TopicsViewController.swift in Sources */,
-				AE693CAF21B9B1A200CC6CD5 /* ProfileViewController.swift in Sources */,
 				AE693CAB21B6E3FE00CC6CD5 /* Score.swift in Sources */,
 				AE978439219A4A4D00EB2CF8 /* ViewController.swift in Sources */,
 			);
