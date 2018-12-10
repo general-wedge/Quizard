@@ -1,10 +1,13 @@
 //
 //  ChooseViewController.swift
-//  FirebaseDemo
+//  Quizard
 //
-//  Created by Xcode User on 2018-11-12.
-//  Copyright © 2018 Austin Howlett. All rights reserved.
+//  Author: Evan Kysley
+//  UI Author: Evan Kysley
+//  Description: This is the main menu of the application. From here a user can view High Scores
+//               or segue to the Topics menu.
 //
+
 
 import UIKit
 import Firebase

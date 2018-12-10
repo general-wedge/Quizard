@@ -1,10 +1,16 @@
 //
 //  TopicsViewController.swift
-//  FirebaseDemo
+//  Quizard
 //
-//  Created by Xcode User on 2018-11-12.
-//  Copyright © 2018 Austin Howlett. All rights reserved.
+//  Author: Evan Kysley
+//  UI Author: Evan Kysley
+//  Description: The TopicViewController is responsible for displaying the list of topics
+//               in a TableView where a user can then select a topic which fetches questions
+//               from the database for that topic and segues to the MCQ view while passing
+//               the list fo question.
 //
+//
+
 
 import UIKit
 import Firebase

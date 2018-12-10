@@ -1,9 +1,12 @@
 //
 //  ViewController.swift
 //
-//  Created by Xcode User on 2018-11-12.
-//  Copyright © 2018 Xcode User. All rights reserved.
+//  Author: Austin Howlett
+//  UI Author: Austin Howlett
+//  Description: This is the main entry point to the application. It handles the segues to either Log In or
+//               Sign Up views when the user is not logged in.
 //
+
 
 import UIKit
 

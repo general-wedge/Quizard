@@ -2,8 +2,13 @@
 //  HighScoreViewController.swift
 //  Quizard
 //
-//  Created by Xcode User on 2018-12-06.
-//  Copyright © 2018 Xcode User. All rights reserved.
+//  Author: Austin Howlett
+//  UI Author: Austin Howlett
+//  Description: The HighScoreViewController is responsible for pulling the current
+//               logged in users high score information, an array of all highscores for the quizzes
+//               the user has taken.
+//               *NOTE* The lack of multiplayer functionality was due to the fact we lacked participation from some
+//                      members in our group and ran out of time.
 //
 
 import UIKit
@@ -50,7 +55,6 @@ class HighScoreViewController: UIViewController {
         for index in 0 ... 7 {
             getHighScore(topicIndex: index)
         }
-        print(usersHighScores)
         
         readyView()
     }

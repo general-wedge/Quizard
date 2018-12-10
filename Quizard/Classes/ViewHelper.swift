@@ -2,9 +2,9 @@
 //  ViewHelper.swift
 //  Quizard
 //
-//  Created by Xcode User on 2018-12-08.
-//  Copyright © 2018 Xcode User. All rights reserved.
-//
+//  Author: Austin Howlett
+//  Description: ViewHelper class exposes styling functionality to the UI controls
+
 
 import Foundation
 import UIKit

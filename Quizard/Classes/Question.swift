@@ -2,10 +2,10 @@
 //  Question.swift
 //  Quizard
 //
-//  Created by Xcode User on 2018-11-24.
-//  Copyright © 2018 Xcode User. All rights reserved.
+//  Author: Austin Howlett
+//  Description: This is the Question model used for the MCQ questions, it also has the
+//               enum for each Topic.
 //
-
 import Foundation
 
 enum Topics: Int, CaseIterable {

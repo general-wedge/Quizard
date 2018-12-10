@@ -2,9 +2,11 @@
 //  QuizScoreViewController.swift
 //  Quizard
 //
-//  Created by Xcode User on 2018-12-05.
-//  Copyright © 2018 Xcode User. All rights reserved.
-//
+//  Author: Evan Kysley
+//  UI Author: Evan Kysley
+//  Description: The QuizScoreController is responsible for displaying the score information for
+//               a quiz that user has just completed/taken. It will show the score achieved and the amount of questions
+//               answered correctly
 
 import UIKit
 import Firebase

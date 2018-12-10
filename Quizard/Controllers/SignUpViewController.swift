@@ -1,9 +1,11 @@
 //
 //  SignUpViewController.swift
-//  FirebaseDemo
+//  Quizard
 //
-//  Created by Xcode User on 2018-11-11.
-//  Copyright © 2018 Austin Howlett. All rights reserved.
+//  Author: Austin Howlett
+//  UI Author: Austin Howlett
+//  Description: The SignUpViewController handles registering a user to Firebase's authentication storage
+//                as well as creating a user record in the Firebase database.
 //
 
 import UIKit

@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  Quizard
 //
-//  Created by Xcode User on 2018-11-12.
-//  Copyright © 2018 Xcode User. All rights reserved.
-//
 
 import UIKit
 import Firebase

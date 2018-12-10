@@ -1,10 +1,14 @@
 //
 //  MCQViewController.swift
-//  FirebaseDemo
+//  Quizard
 //
-//  Created by Xcode User on 2018-11-12.
-//  Copyright © 2018 Austin Howlett. All rights reserved.
+//  Author: Austin Howlett
+//  UI Author: Austin Howlett
+//  Description: The MCQViewController is responsible for handling the starting the quiz timer,
+//               displaying the question based on the question index, and handles the quiz score logic
+//               as well as checks for users high score
 //
+
 
 import UIKit
 import Firebase
@@ -52,17 +56,6 @@ class MCQViewController: UIViewController {
         }
         
         timerLabel.text = String(counter)
-//        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
-//
-//            // this allows us to use the ViewControllers self
-//            // rather than the completion handlers self
-//            guard let strongSelf = self else {
-//                return
-//            }
-//
-//            strongSelf.counter += 0.01
-//            ViewHelper.applyLabelStyles(label: strongSelf.timerLabel, text: String(format: "%0.2f", strongSelf.counter))
-//        }
         startBackgroundAnimation()
         readyView()
     }
@@ -139,11 +132,8 @@ class MCQViewController: UIViewController {
     func getCurrentUserId() -> String {
         let currentUser = Auth.auth().currentUser
         if let user = currentUser {
-            // TODO: handle error properly OR update to handle method in firebase
-            // TODO: moved it from guard let (try re working it later)
             return user.uid
         }
-        
         return ""
     }
     
@@ -163,7 +153,6 @@ class MCQViewController: UIViewController {
                 if dict == nil {
                     dbRef.child("highscores").child(key).setValue(["topic": chosenTopic, "highScore": usersScore.score])
                 } else {
-                    // TODO: Update users highscore
                     if let rootDict = dict {
                         let valueDict = rootDict.value(forKey: key) as? NSDictionary
                         if let storedHighScore = valueDict {
@@ -176,7 +165,6 @@ class MCQViewController: UIViewController {
                         }
                     }
                 }
-                // TODO: maybe move this into completion handler of checkHighScore()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyBoard.instantiateViewController(withIdentifier: "QuizScoreVC") as! QuizScoreViewController
                 // pass data

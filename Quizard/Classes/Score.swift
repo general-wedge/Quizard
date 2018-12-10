@@ -2,9 +2,10 @@
 //  Score.swift
 //  Quizard
 //
-//  Created by Xcode User on 2018-11-24.
-//  Copyright © 2018 Xcode User. All rights reserved.
-//
+//  Author: Evan Kysley
+//  Description: This is the Score and HighScore models used to store quiz score information
+//               as well as HighScore information.
+
 
 import Foundation
 
@@ -27,7 +28,10 @@ class Score {
     }
     
     func updateTimeScore(time: Int) {
-        let timeScore = score / time
+        var timeScore = 0
+        if time != 0 {
+            timeScore += score / time
+        }
         
         if timeScore < 0 {
             score += 0

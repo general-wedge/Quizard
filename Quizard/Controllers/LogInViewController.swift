@@ -1,9 +1,14 @@
 //
 //  LogInViewController.swift
-//  FirebaseDemo
+//  Quizard
 //
-//  Created by Xcode User on 2018-03-24.
-//  Copyright © 2018 Austin Howlett. All rights reserved.
+//  Author: Austin Howlett
+//  UI Author: Austin Howlett
+//  Description: The LoginViewController is responsible for handling authentication.
+//               It handles user authorization by checking user credentials to what is
+//               stored in Firebase under Authentication. If a user fails to login by providing
+//               invalid values or no values at all, an alert is triggered notifying the user of
+//               the error.
 //
 
 import UIKit
