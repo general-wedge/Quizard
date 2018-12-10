@@ -47,7 +47,7 @@ class LogInViewController: UIViewController {
             if error != nil {
                 print("Error occurred: \(error.debugDescription )");
                 self.showAlert(message: "[ERROR] Something failed while logging in. \n Please try again. \n Error Message: " +
-                   "\(error?.localizedDescription)")
+                    "\(String(describing: error?.localizedDescription))")
                 self.clearText()
             }
             
