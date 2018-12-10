@@ -38,11 +38,68 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         
+        // start background animation
+        startBackgroundAnimation()
+        // set up controls
+        readyView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // start background animation
+        startBackgroundAnimation()
+        // set up controls
+        readyView()
+    }
+    
+    @IBAction func signUp(sender: UIButton) {
+        ref = Database.database().reference()
+        if !userNameText.text!.isEmpty {
+            if !emailText.text!.isEmpty {
+                if !passwordText.text!.isEmpty {
+                    Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
+                        if error != nil {
+                            if let errorMessage = error {
+                                self.showAlert(message: "Message: \(errorMessage.localizedDescription)")
+                                print("Error occurred: \(error.debugDescription )");
+                                self.clearText()
+                            }
+                        }
+                        
+                        if user != nil {
+                            print("User has been created")
+                            if let dbRef = self.ref {
+                                if let signedInUser = user {
+                                    dbRef.child("users").child(signedInUser.user.uid).setValue(["userName": self.userNameText.text, "email": signedInUser.user.email])
+                                }
+                            }
+                            self.performSegue(withIdentifier: "goToLogin", sender: self)
+                        }
+                    }
+                } else {
+                    self.showAlert(message: "Password is required.")
+                }
+            } else {
+                self.showAlert(message: "Email is required.")
+            }
+        } else {
+           self.showAlert(message: "Username is required.")
+        }
+
+    }
+    
+    func readyView() {
+        ViewHelper.applyButtonStyles(button: continueButton)
+        ViewHelper.applyInputStyles(input: userNameText)
+        ViewHelper.applyInputStyles(input: emailText)
+        ViewHelper.applyInputStyles(input: passwordText)
+    }
+    
+    func startBackgroundAnimation() {
         // set up gradient animation
         gradientSet.append([gradientOne, gradientTwo])
         gradientSet.append([gradientTwo, gradientThree])
         gradientSet.append([gradientThree, gradientOne])
-        
         
         gradient.frame = self.view.bounds
         gradient.colors = gradientSet[currentGradient]
@@ -52,65 +109,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.view.layer.insertSublayer(gradient, at: 0)
         
         animateGradient()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // set up controls
-        continueButton.layer.cornerRadius = continueButton.frame.height / 2
-        continueButton.layer.borderWidth = 1
-        continueButton.layer.borderColor = UIColor.white.cgColor
-        
-        let usernameBorder = CALayer()
-        let width = CGFloat(2.0)
-        usernameBorder.borderColor = UIColor.white.cgColor
-        usernameBorder.frame = CGRect(x: 0, y: userNameText.frame.size.height - width, width:  userNameText.frame.size.width, height: userNameText.frame.size.height)
-        
-        usernameBorder.borderWidth = width
-        userNameText.borderStyle = UITextField.BorderStyle.none
-        userNameText.layer.addSublayer(usernameBorder)
-        userNameText.layer.masksToBounds = true
-        
-        let emailBorder = CALayer()
-        emailBorder.borderColor = UIColor.white.cgColor
-        emailBorder.frame = CGRect(x: 0, y: userNameText.frame.size.height - width, width:  userNameText.frame.size.width, height: userNameText.frame.size.height)
-        
-        emailBorder.borderWidth = width
-        emailText.borderStyle = UITextField.BorderStyle.none
-        emailText.layer.addSublayer(emailBorder)
-        emailText.layer.masksToBounds = true
-        
-        
-        let passwordBorder = CALayer()
-        passwordBorder.borderColor = UIColor.white.cgColor
-        passwordBorder.frame = CGRect(x: 0, y: userNameText.frame.size.height - width, width:  userNameText.frame.size.width, height: userNameText.frame.size.height)
-        
-        passwordBorder.borderWidth = width
-        passwordText.borderStyle = UITextField.BorderStyle.none
-        passwordText.layer.addSublayer(passwordBorder)
-        passwordText.layer.masksToBounds = true
-        
-    }
-    
-    @IBAction func signUp(sender: UIButton) {
-        ref = Database.database().reference()
-        Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
-            if error != nil {
-                print("Error occurred: \(error.debugDescription )");
-                self.clearText()
-            }
-            
-            if user != nil {
-                print("User has been created")
-                if let dbRef = self.ref {
-                    if let signedInUser = user {
-                        dbRef.child("users").child(signedInUser.user.uid).setValue(["userName": self.userNameText.text, "email": signedInUser.user.email])
-                    }
-                }
-                self.performSegue(withIdentifier: "goToLogin", sender: self)
-            }
-        }
     }
     
     func animateGradient() {
@@ -138,6 +136,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailText.text = ""
         passwordText.text = ""
         userNameText.text = ""
+    }
+    
+    // creates an alert
+    func createAlertController(message: String) -> UIAlertController {
+        let alertController = UIAlertController(
+            title: "Oops!",
+            message: message,
+            preferredStyle: .alert)
+        // add cancel button so user can close alert
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        return alertController
+    }
+    
+    // this function displays an alert
+    func showAlert(message: String) {
+        let alert = createAlertController(message: message)
+        self.present(alert, animated: true, completion: nil)
     }
     
     /*

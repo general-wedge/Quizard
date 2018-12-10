@@ -46,6 +46,8 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
             if error != nil {
                 print("Error occurred: \(error.debugDescription )");
+                self.showAlert(message: "[ERROR] Something failed while logging in. \n Please try again. \n Error Message: " +
+                   "\(error?.localizedDescription)")
                 self.clearText()
             }
             
@@ -53,7 +55,7 @@ class LogInViewController: UIViewController {
                 print("User logged in")
                 self.performSegue(withIdentifier: "goToApp", sender: self)
             } else {
-                print("User failed to login")
+                self.showAlert(message: "Invalid Email or Password \n Please try again.")
             }
         }
     }
@@ -99,6 +101,24 @@ class LogInViewController: UIViewController {
         ViewHelper.applyButtonStyles(button: signInButton)
         ViewHelper.applyInputStyles(input: emailText)
         ViewHelper.applyInputStyles(input: passwordText)
+    }
+    
+    // creates an alert
+    func createAlertController(message: String) -> UIAlertController {
+        let alertController = UIAlertController(
+            title: "Oops!",
+            message: message,
+            preferredStyle: .alert)
+        // add cancel button so user can close alert
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        return alertController
+    }
+    
+    // this function displays an alert
+    func showAlert(message: String) {
+        let alert = createAlertController(message: message)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
